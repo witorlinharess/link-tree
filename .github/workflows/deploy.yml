@@ -32,7 +32,27 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          echo "--- Debug: workspace ---"
+          pwd
+          ls -la
+          echo "--- Debug: git files ---"
+          git status --porcelain || true
+          git ls-files | sed -n '1,50p' || true
+          echo "--- Debug: lockfiles ---"
+          [ -f package-lock.json ] && echo "package-lock.json exists" || echo "no package-lock.json"
+          [ -f npm-shrinkwrap.json ] && echo "npm-shrinkwrap.json exists" || echo "no npm-shrinkwrap.json"
+          echo "--- Debug: node/npm versions ---"
+          node -v || true
+          npm -v || true
+          echo "--- Attempting install ---"
+          if [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ]; then
+            echo "Lockfile found - trying npm ci"
+            npm ci || (echo "npm ci failed, running npm install" && npm install)
+          else
+            echo "No lockfile found - running npm install"
+            npm install
+          fi
 
       - name: "Step 1: Quality Checks - TypeScript (no emit)"
         run: npx tsc --noEmit
@@ -64,7 +84,27 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          echo "--- Debug: workspace ---"
+          pwd
+          ls -la
+          echo "--- Debug: git files ---"
+          git status --porcelain || true
+          git ls-files | sed -n '1,50p' || true
+          echo "--- Debug: lockfiles ---"
+          [ -f package-lock.json ] && echo "package-lock.json exists" || echo "no package-lock.json"
+          [ -f npm-shrinkwrap.json ] && echo "npm-shrinkwrap.json exists" || echo "no npm-shrinkwrap.json"
+          echo "--- Debug: node/npm versions ---"
+          node -v || true
+          npm -v || true
+          echo "--- Attempting install ---"
+          if [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ]; then
+            echo "Lockfile found - trying npm ci"
+            npm ci || (echo "npm ci failed, running npm install" && npm install)
+          else
+            echo "No lockfile found - running npm install"
+            npm install
+          fi
 
       - name: "Deploy - Vercel (preview)"
         uses: amondnet/vercel-action@v20
@@ -98,7 +138,27 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          echo "--- Debug: workspace ---"
+          pwd
+          ls -la
+          echo "--- Debug: git files ---"
+          git status --porcelain || true
+          git ls-files | sed -n '1,50p' || true
+          echo "--- Debug: lockfiles ---"
+          [ -f package-lock.json ] && echo "package-lock.json exists" || echo "no package-lock.json"
+          [ -f npm-shrinkwrap.json ] && echo "npm-shrinkwrap.json exists" || echo "no npm-shrinkwrap.json"
+          echo "--- Debug: node/npm versions ---"
+          node -v || true
+          npm -v || true
+          echo "--- Attempting install ---"
+          if [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ]; then
+            echo "Lockfile found - trying npm ci"
+            npm ci || (echo "npm ci failed, running npm install" && npm install)
+          else
+            echo "No lockfile found - running npm install"
+            npm install
+          fi
 
       - name: "Deploy - Vercel (production)"
         id: vercel
