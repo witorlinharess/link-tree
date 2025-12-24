@@ -192,6 +192,26 @@ jobs:
           done
           echo "Site did not return 2xx after 3 tries." && exit 1
 
+      - name: "Purge Cloudflare cache"
+        if: success()
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
+        run: |
+          echo "Purging Cloudflare cache for ${CF_ZONE_ID}..."
+          response=$(curl -s -X POST "https://api.cloudflare.com/client/v4/zones/${CF_ZONE_ID}/purge_cache" \
+            -H "Authorization: Bearer ${CF_API_TOKEN}" \
+            -H "Content-Type: application/json" \
+            --data '{"purge_everything":true}')
+          echo "Response: $response"
+          success=$(echo "$response" | jq -r '.success' 2>/dev/null || echo "false")
+          if [ "$success" = "true" ]; then
+            echo "Cloudflare cache purged successfully."
+          else
+            echo "Cloudflare purge failed: $response"
+            exit 1
+          fi
+
   notify:
     name: Post-Deployment Notification (optional)
     runs-on: ubuntu-latest
