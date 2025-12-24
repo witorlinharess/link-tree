@@ -22,13 +22,14 @@ export default function ProjetosPage(){
                 <Image src={p.image} alt={p.title} fill sizes="(min-width: 900px) 50vw, 100vw" style={{ objectFit: 'cover' }} />
               </div>
 
-              <div className="project-overlay">
-                <div className="project-info">
+              <div className="project-info">
+                <div className="project-info-content">
                   <h3>{p.title}</h3>
                   <p>{p.description}</p>
-                  <div className="project-actions">
-                    <Link href={p.url} className="btn" aria-label={`Visualizar ${p.title}`}>Visualizar projeto</Link>
-                  </div>
+                </div>
+
+                <div className="project-actions">
+                  <Link href={p.url} className="btn" aria-label={`Visualizar ${p.title}`}>Visualizar projeto</Link>
                 </div>
               </div>
             </article>
