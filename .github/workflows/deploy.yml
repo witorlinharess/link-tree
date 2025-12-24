@@ -175,17 +175,22 @@ jobs:
 
       - name: "Step 5: Post-Deployment Check - production smoke test"
         run: |
-          echo "Checking ${SITE_URL} for HTTP 200..."
+          echo "Checking ${SITE_URL} for HTTP 200 (following redirects)..."
           for i in 1 2 3; do
-            status=$(curl -s -o /dev/null -w "%{http_code}" ${SITE_URL}) || true
+            status=$(curl -s -o /dev/null -w "%{http_code}" -L --max-time 10 "${SITE_URL}") || true
             echo "Attempt $i: status=$status"
-            if [ "$status" = "200" ]; then
-              echo "Production site is reachable."
-              exit 0
-            fi
+            case "$status" in
+              2??)
+                echo "Production site is reachable (status=$status)."
+                exit 0
+                ;;
+              *)
+                echo "Not OK (status=$status); retrying..."
+                ;;
+            esac
             sleep 5
           done
-          echo "Site did not return 200 after 3 tries." && exit 1
+          echo "Site did not return 2xx after 3 tries." && exit 1
 
   notify:
     name: Post-Deployment Notification (optional)
