@@ -225,12 +225,16 @@ jobs:
             -H "Content-Type: application/json" \
             --data '{"purge_everything":true}')
           echo "Response: $response"
+          # show error messages (if any)
+          errors=$(echo "$response" | jq -r '.errors[]?.message' 2>/dev/null | paste -s -d';' -)
           success=$(echo "$response" | jq -r '.success' 2>/dev/null || echo "false")
           if [ "$success" = "true" ]; then
             echo "Cloudflare cache purged successfully."
           else
             echo "Cloudflare purge failed: $response"
-            exit 1
+            echo "Cloudflare errors: ${errors}"
+            echo "WARNING: Cloudflare purge failed - continuing without failing the deploy. Please verify the CF_API_TOKEN and CF_ZONE_ID secrets and token permissions (Zone.Cache Purge write)."
+            # do not exit with error so deploy isn't blocked by purge failures
           fi
 
   notify:
