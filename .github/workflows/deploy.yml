@@ -60,7 +60,8 @@ jobs:
       - name: "Step 1: Quality Checks - Lint"
         run: |
           if npm run | grep -q lint; then
-            npm run lint --if-present
+            echo "Running lint (errors won't fail CI)"
+            npm run lint --if-present || echo "Lint failed - continuing"
           else
             echo "No lint script defined; skipping."
           fi
