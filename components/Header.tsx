@@ -3,7 +3,7 @@ import { FiSun } from 'react-icons/fi'
 import { colors } from '../lib/colors'
 
 export default function Header() {
-  const headerStyle: React.CSSProperties = { position: 'fixed', left: 0, right: 0, top: 0, zIndex: 20 }
+  const headerStyle: React.CSSProperties = { position: 'absolute', left: 0, right: 0, top: 0, zIndex: 20 }
   const gradientStyle: React.CSSProperties = { background: `linear-gradient(180deg, ${colors.gradientStart} 0%, ${colors.gradientFade} 60%)`, position: 'absolute', left: 0, right: 0, top: 0, height: 896, pointerEvents: 'none', opacity: 0.95, }
   const navStyle: React.CSSProperties = { position: 'relative', zIndex: 30, maxWidth: 1280, margin: '0 auto', padding: '0 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 196 }
   const siteNameStyle: React.CSSProperties = { color: colors.text, fontSize: 18, fontWeight: 600, letterSpacing: '0.6px' }
