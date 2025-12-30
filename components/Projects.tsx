@@ -28,7 +28,8 @@ export default function Projects({ count = 6 }: { count?: number }) {
   }, [])
 
   const sectionStyle: React.CSSProperties = { background: colors.background, color: colors.text, padding: '48px 16px' }
-  const containerStyle: React.CSSProperties = { maxWidth: 1320, margin: '0 auto' }
+  // match Hero inner padding so content aligns exactly with Hero
+  const containerStyle: React.CSSProperties = { maxWidth: 1320, margin: '0 auto', paddingLeft: 48, paddingRight: 48 }
   const gridStyle: React.CSSProperties = { display: 'grid', gridTemplateColumns: `repeat(${columns}, 1fr)`, gap: 28 }
   const cardStyle: React.CSSProperties = { borderRadius: 12, overflow: 'hidden', background: colors.gray, border: '1px solid rgba(255,255,255,0.02)', display: 'flex', flexDirection: 'column' }
   const mediaStyle: React.CSSProperties = { position: 'relative', width: '100%', paddingBottom: '100%', flex: '0 0 auto' }
@@ -39,8 +40,8 @@ export default function Projects({ count = 6 }: { count?: number }) {
   return (
     <section style={sectionStyle} aria-labelledby="projects-title">
       <div style={containerStyle}>
-        <h2 id="projects-title" style={{ fontSize: 28, margin: '10px 0 6px' }}>Meus Projetos</h2>
-        <p style={{ color: 'rgba(245,245,245,0.85)', marginBottom: 18 }}>Confira alguns dos meus melhores projetos.</p>
+        <h3 id="projects-title" style={{ fontSize: 56,fontWeight: 300, margin: '10px 0 6px' }}>Meus Projetos</h3>
+        <p style={{ color: colors.textSecondary, fontSize: 22, fontWeight: 300, marginBottom: 18 }}>Confira alguns dos meus melhores projetos.</p>
 
         <div style={gridStyle}>
           {projects.map(p => (

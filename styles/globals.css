@@ -128,17 +128,5 @@ body{
 
 .projects-note{margin-top:16px;color:var(--white);font-size:13px;text-align:center}
 
-/* Button CTA pulse shadow animation */
-@keyframes pulse-shadow {
-  0% { box-shadow: 0 6px 18px rgba(0,0,0,0.18); }
-  50% { box-shadow: 0 22px 40px rgba(0,0,0,0.20); }
-  100% { box-shadow: 0 6px 18px rgba(0,0,0,0.18); }
-}
-
-.button-cta {
-  animation: pulse-shadow 3.5s ease-in-out infinite;
-  will-change: box-shadow, transform;
-}
-
 .button-cta:hover { transform: translateY(-4px); animation-play-state: paused }
 .button-cta:focus-visible { outline: 3px solid rgba(255,255,255,0.06); outline-offset: 2px }
