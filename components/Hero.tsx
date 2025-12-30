@@ -5,19 +5,26 @@ export default function Hero(){
   const innerStyle: React.CSSProperties = { maxWidth: 1320, margin: '0 auto', paddingLeft: 48, paddingRight: 48 }
   const titleStyle: React.CSSProperties = {
     fontWeight: 300,
-    fontSize: 'clamp(40px, 14vw, 100px)',
-    lineHeight: 1,
+    fontSize: 'clamp(40px, 14vw, 80px)',
+    // slightly increased line-height to avoid clipping of descenders
+    lineHeight: 1.06,
     marginTop: 120,
+    paddingBottom: 6,
 
-    // metallic gradient text
-    background: 'linear-gradient(90deg, #e6e8eb 0%, #c9c9c9 20%, #ffffff 50%, #b6b6b6 80%, #7f7f7f 100%)',
-    backgroundSize: '200% auto',
+    // gradient text using theme colors (45°) and improved rendering
+    backgroundImage: `linear-gradient(115deg, ${colors.gradientStart} 0%, ${colors.gradientFinish} 100%)`,
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    backgroundSize: '150% 150%',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
+    // keep unprefixed fallback (some engines may ignore it for text clipping)
     backgroundClip: 'text',
     color: 'transparent',
     display: 'inline-block',
-    textShadow: '0 1px 0 rgba(255,255,255,0.06)'
+    textShadow: '0 1px 0 rgba(255,255,255,0.06)',
+    WebkitFontSmoothing: 'antialiased',
+    textRendering: 'optimizeLegibility'
   }
 
   return (
@@ -25,8 +32,9 @@ export default function Hero(){
       <div style={innerStyle}>
 
         <h1 style={titleStyle}>
-          Olá, me chamo Witor, sou desenvolvedor full stack. Veja meus projetos abaixo:
+          Desenvolvedor full stack focado em performance, resultado e experiência do usuário.
         </h1>
+        <h2>Código é só o meio. O foco é a solução.</h2>
 
       </div>
     </section>
