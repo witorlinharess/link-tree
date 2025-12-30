@@ -1,4 +1,5 @@
 import { colors } from '../lib/colors'
+import ButtonCta from './ButtonCta'
 
 export default function Hero(){
   const sectionStyle: React.CSSProperties = { background: colors.background, minHeight: '100vh', display: 'flex', alignItems: 'flex-start', color: colors.text }
@@ -29,7 +30,14 @@ export default function Hero(){
         <h1 style={titleStyle}>
           Desenvolvedor full stack focado em performance, resultado e experiência do usuário.
         </h1>
-        <h2 style={subtitleStyle}>Código é só o meio. O foco é a solução.</h2>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 24, marginTop: 32, width: '100%' }}>
+          <h2 style={{ ...subtitleStyle, margin: 0 }}>Código é só o meio. O foco é a solução.</h2>
+
+          {/* horizontal divider that fills space between h2 and the button */}
+          <div aria-hidden style={{ flex: 1, height: 1, background: colors.gray, opacity: 0.9 }} />
+
+          <ButtonCta href="/projetos">Orçamento</ButtonCta>
+        </div>
 
       </div>
     </section>
