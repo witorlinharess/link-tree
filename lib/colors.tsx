@@ -9,8 +9,8 @@ export const colors = {
   gray: '#2c2c2c',
 
   // header gradient
-  gradientStart: '#3a0b3a',
-  gradientFade: 'rgba(58,11,58,0)'
+  gradientStart: '#2d1597ff',
+  gradientFade: 'rgba(85, 0, 254, 0)'
 }
 
 export type Colors = typeof colors
