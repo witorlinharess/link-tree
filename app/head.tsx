@@ -27,15 +27,15 @@ export default function Head() {
 
       {/* Favicons & theme */}
       {/* Primary svg favicon (cache-busted for testing) */}
-      <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml" sizes="any" />
-      <link rel="shortcut icon" href="/favicon.svg?v=2" />
+      <link rel="icon" href="/favicon.png?v=2" type="image/svg+xml" sizes="any" />
+      <link rel="shortcut icon" href="/favicon.png?v=2" />
 
       {/* PNG/ICO fallbacks (optional) */}
       <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
       <link rel="icon" href="/favicon.ico" sizes="16x16 32x32" />
 
       <link rel="apple-touch-icon" href="/favicon-180.png" />
-      <meta name="msapplication-TileImage" content="/favicon.svg?v=2" />
+      <meta name="msapplication-TileImage" content="/favicon.png?v=2" />
     </>
   )
 }

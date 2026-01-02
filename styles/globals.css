@@ -5,125 +5,18 @@
 .site-content{position:relative;z-index:1}
 
 
-:root{
-  --black: #0f0f0f;
-  --white:#f5f5f5;
-  --gray: #2c2c2c;
-}
-
 *{box-sizing:border-box}
+
 html,body,#root{height:100%}
 body{
   margin:0;
   font-family: 'Funnel Sans', system-ui, -apple-system;
-  background: var(--black);
-  color: var(--white);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
 }
 
-.page-root{
-  min-height:100vh;
-  display:flex;
-  align-items:flex-start;
-  justify-content:center;
-  padding:80px 16px 40px;
-}
 
-.card{
-  width:100%;
-  max-width:460px;
-  padding:24px 20px 36px;
-  display:flex;
-  flex-direction:column;
-  gap:24px;
-  align-items:center;
-}
+/* Projects page styles removed — cards are styled inline in `components/Projects.tsx` */
+/* Inline styles in the React component now control layout, spacing, hover and focus behavior. */
 
-.profile{ text-align:center }
-.avatar-ring{ border-radius:999px;padding:1px;background:#7c7c7c; display:inline-flex;align-items:center;justify-content:center }
-.avatar{border-radius:999px;}
+/* Removed .projects-note from globals — project-specific presentation should come from the React component */
 
-.name{font-weight:600;margin:18px 0 6px;font-size:28px}
-.subtitle{color:var(--white);margin:0 0 24px;font-size:18px}
-
-.socials{display:flex;gap:12px;justify-content:center;margin-bottom:6px}
-.social{width:44px;height:44px;border-radius:12px;background:#1d1d1d;display:inline-flex;align-items:center;justify-content:center;color:#fff; border:1px solid rgba(255,255,255,0.03)}
-
-.links-panel{
-  width:100%;
-  padding:18px;
-  border-radius:20px;
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
-
-.link-card{
-  display:flex;align-items:center;gap:16px;padding:14px 16px;border-radius:18px;background:var(--gray);
-  text-decoration:none;color:#fff;width:100%; border:1px solid rgba(255,255,255,0.02);transition:transform .18s ease, box-shadow .18s ease;
-}
-.link-card:hover{ transform:translateY(-6px); box-shadow:0 20px 50px rgba(0, 0, 0, 0.11)}
-
-.inner-icon{width:38px;height:38px;border-radius:10px;background:var(--bg);display:flex;align-items:center;justify-content:center;color:var(--black);font-size:16px}
-
-.link-text{font-weight:500}
-
-@media(max-width:420px){
-  .card{padding:18px 16px}
-  .avatar-ring img, .avatar{width:110px;height:110px}
-  .name{font-size:18px}
-  .left-icon{width:48px;height:48px}
-}
-
-@media(min-width:900px){
-  .page-root{padding-top:120px}
-}
-
-/* Not-found page */
-/* make the not-found page more compact and vertically centered */
-.not-found-root.page-root{padding:40px 16px;align-items:center;justify-content:center}
-.not-found-root .card{max-width:760px;padding:24px 20px;text-align:center;display:flex;flex-direction:column;align-items:center}
-.not-found-root h1{font-size:28px;margin:0 0 6px}
-.not-found-root .projects-sub{margin-bottom:4px;color:var(--white)}
-.not-found-root .project-actions{margin-left:0;justify-content:center;margin-top:4px}
-.not-found-root .btn{padding:10px 16px;border-radius:12px;margin-top:4px}
-
-/* Projects page styles */
-.projetos-root{padding-bottom:60px}
-.projects-container{width:100%;max-width:1200px;margin:0 auto;padding:10px 16px}
-.projects-title{font-size:28px;margin:10px 0 6px;text-align:center}
-.projects-sub{color:var(--white);text-align:center;margin-bottom:18px}
-
-.projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-@media(max-width:720px){.projects-grid{grid-template-columns:1fr}}
-
-.project-card{overflow:hidden;border-radius:14px;background:#ddd;border:1px solid rgba(0,0,0,0.04);display:flex;flex-direction:column}
-.project-media{position:relative;width:100%;height:350px;flex:0 0 auto}
-.project-media img{width:100%;height:100%;object-fit:cover}
-
-/* info block moved below image */
-.project-info{
-  padding:16px;
-  background:linear-gradient(180deg, rgba(255,255,255,0.96), rgba(250,250,250,0.96));
-  border-top:1px solid rgba(0,0,0,0.04);
-  color:var(--black);
-  border-bottom-left-radius:12px;
-  border-bottom-right-radius:12px;
-  display:flex;
-  align-items:center;
-  gap:16px;
-}
-.project-info .project-info-content{flex:1}
-.project-actions{margin-left:auto;display:flex;align-items:center}
-@media(max-width:520px){
-  .project-info{flex-direction:column;align-items:flex-start}
-  .project-actions{margin-left:0;margin-top:12px}
-}
-.project-info h3{margin:0 0 6px}
-.project-info p{margin:0 0 12px;color:var(--white);font-size:14px}
-.project-actions{display:flex;gap:12px}
-.btn{display:inline-block;padding:8px 12px;border-radius:10px;background:var(--black);color:#fff;text-decoration:none;font-weight:600;border:1px solid rgba(255,255,255,0.03);transition:transform .12s ease;}
-.btn:hover{transform:translateY(-4px)}
-
-.projects-note{margin-top:16px;color:var(--white);font-size:13px;text-align:center}
+.button-cta:hover { transform: translateY(-4px); animation-play-state: paused }

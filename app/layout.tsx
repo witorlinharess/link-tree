@@ -47,8 +47,8 @@ export const metadata: Metadata = {
     images: [`${SITE_URL}/witor-linhares.webp`],
   },
   icons: {
-    icon: '/favicon.svg',
-    apple: '/favicon.svg',
+    icon: '/favicon.png',
+    apple: '/favicon.png',
     other: [
       { rel: 'manifest', url: '/site.webmanifest' },
     ],

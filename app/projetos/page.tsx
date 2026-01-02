@@ -1,42 +1,25 @@
-import Image from 'next/image'
-import Link from 'next/link'
+import Header from '../../components/Header'
+import Projects from '../../components/Projects'
+import Footer from '../../components/Footer'
+import { colors } from '../../lib/colors'
 
-const projects = [
-  { id: 1, title: 'Projeto 1', description: 'Descrição curta do projeto 1', image: '/projects/projeto-1.png', url: '#' },
-  { id: 2, title: 'Projeto 2', description: 'Descrição curta do projeto 2', image: '/projects/project-2.svg', url: '#' },
-  { id: 3, title: 'Projeto 3', description: 'Descrição curta do projeto 3', image: '/projects/project-3.svg', url: '#' },
-  { id: 4, title: 'Projeto 4', description: 'Descrição curta do projeto 4', image: '/projects/project-4.svg', url: '#' }
-]
+export const metadata = {
+  title: 'Projetos – Witor Linhares',
+}
 
 export default function ProjetosPage(){
+  const wrapperStyle: React.CSSProperties = { display: 'flex', flexDirection: 'column', minHeight: '100vh', background: colors.background, color: colors.text }
+  const mainStyle: React.CSSProperties = { flex: 1, paddingTop: 140, paddingBottom: 60 }
+
   return (
-    <main className="page-root projetos-root">
-      <div className="projects-container">
-        <h1 className="projects-title">Meus Projetos</h1>
-        <p className="projects-sub">Confira alguns dos meus melhores projetos.</p>
+    <div style={wrapperStyle}>
+      <Header />
 
-        <div className="projects-grid">
-          {projects.map(p => (
-            <article className="project-card" key={p.id}>
-              <div className="project-media">
-                <Image src={p.image} alt={p.title} fill sizes="(min-width: 900px) 50vw, 100vw" style={{ objectFit: 'cover' }} />
-              </div>
+      <main style={mainStyle}>
+        <Projects count={3} />
+      </main>
 
-              <div className="project-info">
-                <div className="project-info-content">
-                  <h3>{p.title}</h3>
-                  <p>{p.description}</p>
-                </div>
-
-                <div className="project-actions">
-                  <Link href={p.url} className="btn" aria-label={`Visualizar ${p.title}`}>Visualizar projeto</Link>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-
-      </div>
-    </main>
+      <Footer />
+    </div>
   )
 }
