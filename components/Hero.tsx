@@ -5,12 +5,11 @@ import { colors } from '../lib/colors'
 export default function Hero(){
   const sectionStyle: React.CSSProperties = { 
     background: colors.background,
-    minHeight: '100vh', 
     display: 'flex', 
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'center',
     color: colors.text,
-    padding: '120px 0 80px',
+    padding: '40px 0 90px',
     position: 'relative'
   }
   
@@ -22,15 +21,7 @@ export default function Hero(){
     width: '100%'
   }
   
-  const nameStyle: React.CSSProperties = { 
-    fontWeight: 400, 
-    fontSize: 'clamp(14px, 1.5vw, 16px)', 
-    letterSpacing: '0.05em',
-    marginBottom: 40,
-    color: colors.textSecondary,
-    textTransform: 'uppercase'
-  }
-  
+
   const titleStyle: React.CSSProperties = { 
     fontWeight: 300, 
     fontSize: 'clamp(40px, 6vw, 72px)', 
@@ -54,7 +45,6 @@ export default function Hero(){
   return (
     <section style={sectionStyle}>
       <div className="heroInner fadeIn" style={innerStyle}>
-        <div style={nameStyle}>Witor Linhares</div>
         <h1 style={titleStyle}>
           Full Stack Developer<br />
           focado em performance<br />
@@ -65,7 +55,7 @@ export default function Hero(){
           Especializado em aplicações web modernas e escaláveis.
         </h2>
 
-        <div style={{ display: 'flex', gap: 16, marginTop: 40, alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: 16, marginTop: 30, alignItems: 'center' }}>
           <a 
             href="mailto:witorlinhares@gmail.com" 
             style={{
