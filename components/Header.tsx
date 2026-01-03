@@ -7,14 +7,13 @@ import React, { useEffect, useState } from 'react'
 export default function Header() {
   const headerStyle: React.CSSProperties = { 
     position: 'fixed', 
-    left: 270, 
-    right: 270, 
-    top: 20, 
+    left: 0, 
+    right: 0, 
+    top: 0, 
     zIndex: 20, 
     height: 80, 
-    background: colors.background, 
-    border: `1px solid ${colors.border}`,
-    borderRadius: 900,
+    background: colors.background,
+    borderBottom: `1px solid ${colors.border}`,
   }
   
   const navStyle: React.CSSProperties = { 
@@ -61,77 +60,211 @@ export default function Header() {
 
   const [menuOpen, setMenuOpen] = useState(false)
 
+  const toggleMenu = () => setMenuOpen(!menuOpen)
+
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.key === 'Escape') setMenuOpen(false)
     }
-    if (menuOpen) window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
+    if (menuOpen) {
+      window.addEventListener('keydown', onKey)
+      document.addEventListener('click', handleClickOutside)
+    }
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      document.removeEventListener('click', handleClickOutside)
+    }
   }, [menuOpen])
 
+  const handleClickOutside = (e: MouseEvent) => {
+    const target = e.target as HTMLElement
+    if (!target.closest('.menuContainer')) {
+      setMenuOpen(false)
+    }
+  }
+
   return (
-    <header style={headerStyle}>
-      <nav style={navStyle}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+    <>
+      <header style={headerStyle}>
+        <nav style={navStyle}>
           <Link href="/" style={logoStyle}>
             WITOR LINHARES
           </Link>
-          
-          <div 
+
+          <button
+            onClick={toggleMenu}
+            aria-expanded={menuOpen}
+            aria-label="Menu"
             style={{
+              background: 'transparent',
+              border: 'none',
+              padding: '8px',
+              cursor: 'pointer',
               display: 'flex',
-              alignItems: 'center',
-              gap: 8,
-              padding: '6px 12px',
-              background: colors.card,
-              border: `1px solid ${colors.border}`,
-              borderRadius: 24,
-              fontSize: 12,
-              color: colors.text,
-              letterSpacing: '0.3px',
+              flexDirection: 'column',
+              gap: 6,
+              transition: 'all 0.2s ease',
             }}
-            className="badge"
+            className="menuButton"
           >
-            <span className="pulse-dot"></span>
-            Disponível para novos projetos
-          </div>
-        </div>
+            <span style={{ width: 24, height: 2, background: colors.text, borderRadius: 2, transition: 'all 0.3s ease' }} className="bar1"></span>
+            <span style={{ width: 24, height: 2, background: colors.text, borderRadius: 2, transition: 'all 0.3s ease' }} className="bar2"></span>
+          </button>
+        </nav>
+      </header>
 
-        <ul className="navList" style={listStyle}>
-          <li><Link href="/projetos" style={linkStyle}>Projetos</Link></li>
-          <li><Link href="/about" style={linkStyle}>Sobre</Link></li>
-          <li><a href="https://discord.gg/eJFHGnJ6Pn" style={linkStyle}>Discord</a></li>
-        </ul>
+      {/* Overlay */}
+      <div 
+        className={`sidebarOverlay ${menuOpen ? 'open' : ''}`}
+        onClick={() => setMenuOpen(false)}
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'rgba(0,0,0,0.4)',
+          opacity: menuOpen ? 1 : 0,
+          pointerEvents: menuOpen ? 'auto' : 'none',
+          transition: 'opacity 0.3s ease',
+          zIndex: 40,
+        }}
+      />
 
-        <button
-          className="menuButton"
-          aria-expanded={menuOpen}
-          aria-controls="mobile-menu"
-          onClick={() => setMenuOpen(true)}
-          style={{ display: 'none', background: 'transparent', color: colors.text, border: 'none', fontSize: 14, cursor: 'pointer' }}
-        >
-          Menu
-        </button>
+      {/* Sidebar */}
+      <aside
+        className={`sidebar ${menuOpen ? 'open' : ''}`}
+        style={{
+          position: 'fixed',
+          top: 0,
+          right: 0,
+          width: '100%',
+          maxWidth: 400,
+          height: '100vh',
+          background: colors.background,
+          borderLeft: `1px solid ${colors.border}`,
+          transform: menuOpen ? 'translateX(0)' : 'translateX(100%)',
+          transition: 'transform 0.3s ease',
+          zIndex: 50,
+          padding: '100px 48px 48px',
+          boxSizing: 'border-box',
+        }}
+      >
+        <div className="menuContainer" style={{ position: 'relative' }}>
+          <nav style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <h2 style={{
+              fontSize: 14,
+              fontWeight: 400,
+              color: colors.textSecondary,
+              letterSpacing: '1px',
+              textTransform: 'uppercase',
+              marginBottom: 24,
+            }}>
+              Links úteis
+            </h2>
+            
+            <Link 
+              href="/portfolio" 
+              onClick={() => setMenuOpen(false)}
+              style={{
+                display: 'block',
+                padding: '16px 0',
+                color: colors.text,
+                textDecoration: 'none',
+                fontSize: 32,
+                fontWeight: 300,
+                letterSpacing: '-0.5px',
+                transition: 'opacity 0.2s ease',
+              }}
+              className="sidebarLink"
+            >
+              Portfólio
+            </Link>
+            <Link 
+              href="/about" 
+              onClick={() => setMenuOpen(false)}
+              style={{
+                display: 'block',
+                padding: '16px 0',
+                color: colors.text,
+                textDecoration: 'none',
+                fontSize: 32,
+                fontWeight: 300,
+                letterSpacing: '-0.5px',
+                transition: 'opacity 0.2s ease',
+              }}
+              className="sidebarLink"
+            >
+              Sobre
+            </Link>
+            <a 
+              href="https://discord.gg/eJFHGnJ6Pn"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMenuOpen(false)}
+              style={{
+                display: 'block',
+                padding: '16px 0',
+                color: colors.text,
+                textDecoration: 'none',
+                fontSize: 32,
+                fontWeight: 300,
+                letterSpacing: '-0.5px',
+                transition: 'opacity 0.2s ease',
+              }}
+              className="sidebarLink"
+            >
+              Discord
+            </a>
 
-        <div className={`menuOverlay ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(false)} aria-hidden={!menuOpen}></div>
-
-        <aside
-          id="mobile-menu"
-          role="dialog"
-          aria-modal={menuOpen}
-          className={`menuPanel ${menuOpen ? 'open' : ''}`}
-          style={{ background: colors.background, borderLeft: `1px solid ${colors.border}` }}
-        >
-          <button className="closeButton" onClick={() => setMenuOpen(false)} aria-label="Fechar menu">×</button>
-
-          <nav>
-            <ul className="menuLinks" style={{ listStyle: 'none', margin: 0, padding: 0 }}>
-              <li><Link href="/projetos" onClick={() => setMenuOpen(false)} style={linkStyle}>Projetos</Link></li>
-              <li><Link href="/about" onClick={() => setMenuOpen(false)} style={linkStyle}>Sobre</Link></li>
-              <li><a href="https://discord.gg/eJFHGnJ6Pn" onClick={() => setMenuOpen(false)} style={linkStyle}>Discord</a></li>
-            </ul>
+            <div style={{
+              marginTop: 40,
+              paddingTop: 40,
+              borderTop: `1px solid ${colors.border}`,
+            }}>
+              <a 
+                href="mailto:witorlinhares@gmail.com"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 16,
+                  textDecoration: 'none',
+                  transition: 'opacity 0.2s ease',
+                }}
+                className="contactLink"
+              >
+                <img 
+                  src="/witor-linhares.webp" 
+                  alt="Witor Linhares" 
+                  style={{
+                    width: 48,
+                    height: 48,
+                    borderRadius: '50%',
+                    objectFit: 'cover',
+                  }}
+                />
+                <div>
+                  <div style={{
+                    fontSize: 16,
+                    color: colors.text,
+                    fontWeight: 400,
+                    letterSpacing: '0.3px',
+                  }}>
+                    Falar com Witor
+                  </div>
+                  <div style={{
+                    fontSize: 14,
+                    color: colors.textSecondary,
+                    marginTop: 4,
+                  }}>
+                    witorlinhares@gmail.com
+                  </div>
+                </div>
+              </a>
+            </div>
           </nav>
-        </aside>
+        </div>
+      </aside>
 
         <style jsx>{`
           .pulse-dot {
@@ -151,35 +284,24 @@ export default function Header() {
             }
           }
 
-          nav :global(a[style*="border"]:hover) {
-            background: ${colors.card};
-            border-color: ${colors.text};
+          .menuButton:hover .bar1,
+          .menuButton:hover .bar2 {
+            background: ${colors.textSecondary};
           }
 
-          .menuButton { display: none; align-items: center; }
+          .sidebarLink:hover {
+            opacity: 0.6;
+          }
 
-          .menuOverlay { display: none !important; position: fixed; inset: 0; background: rgba(0,0,0,0.2); z-index: 45; opacity: 0; pointer-events: none; transition: opacity .25s ease; }
-          .menuOverlay.open { opacity: 1; pointer-events: auto; }
-
-          .menuPanel { display: none !important; position: fixed; right: 0; top: 0; height: 100vh; width: 100%; max-width: 400px; transform: translateX(100%); transition: transform .32s ease; z-index: 50; flex-direction: column; padding: 80px 40px 40px; box-sizing: border-box; }
-          .menuPanel.open { transform: translateX(0); }
-
-          .menuLinks { display: flex; flex-direction: column; gap: 32px; font-size: 24px; font-weight: 300; letter-spacing: -0.5px; }
-          .menuLinks a { color: ${colors.text}; }
-          .menuLinks a:hover { opacity: 0.6; }
-
-          .closeButton { position: absolute; top: 20px; right: 40px; background: transparent; border: none; font-size: 32px; cursor: pointer; color: ${colors.text}; padding: 0; line-height: 1; }
+          .contactLink:hover {
+            opacity: 0.7;
+          }
 
           @media (max-width: 767px) {
-            .badge { display: none !important; }
-            .navList { display: none !important; }
-            .menuButton { display: inline-flex !important; }
-            .menuOverlay { display: block !important; }
-            .menuPanel { display: flex !important; }
             nav { padding-left: 20px !important; padding-right: 20px !important; }
+            .sidebar { max-width: 100% !important; padding: 100px 20px 48px !important; }
           }
         `}</style>
-      </nav>
-    </header>
+    </>
   )
 }

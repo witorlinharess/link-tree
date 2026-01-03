@@ -67,7 +67,7 @@ export default function Hero(){
 
         <div style={{ display: 'flex', gap: 16, marginTop: 40, alignItems: 'center' }}>
           <a 
-            href="#projetos" 
+            href="#portfolio" 
             style={{
               display: 'inline-block',
               padding: '12px 32px',
@@ -81,7 +81,7 @@ export default function Hero(){
             }}
             className="btnPrimary"
           >
-            Ver Projetos
+            Portfólio
           </a>
           <a 
             href="/about" 

@@ -1,12 +1,12 @@
 export const colors = {
-  background: '#fafafa',
-  text: '#0a0a0a',
+  background: '#0f0e14ff',
+  text: '#ffffffff',
   textSecondary: '#666',
   accent: '#0a0a0a',
   card: '#fff',
-  border: '#e5e5e5',
+  border: '#22222dff',
   hover: '#f5f5f5',
-  footer: '#0a0a0a',
+  footer: '#161723ff',
   footerText: '#fafafa'
 }
 
