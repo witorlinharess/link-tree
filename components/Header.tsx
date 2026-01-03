@@ -8,7 +8,7 @@ import React, { useEffect, useState } from 'react'
 export default function Header() {
   // keep header limited to nav height so gradient doesn't overlap hero
   const headerStyle: React.CSSProperties = { position: 'fixed', left: 0, right: 0, top: 0, zIndex: 20, height: 116, background: colors.background, borderBottom: `1px solid ${colors.line}` }
-  const navStyle: React.CSSProperties = { position: 'relative', zIndex: 30, maxWidth: 1280, margin: '0 auto', padding: '0 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 116 }
+  const navStyle: React.CSSProperties = { position: 'relative', zIndex: 30, maxWidth: 1280, margin: '0 auto', padding: '0 48px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 116 }
   const siteNameStyle: React.CSSProperties = { color: colors.text, fontSize: 28, fontWeight: 600, letterSpacing: '0.6px' }
   const listStyle: React.CSSProperties = { display: 'flex', alignItems: 'center', gap: 28, fontSize: 14, color: colors.text, listStyle: 'none', margin: 0, padding: 0 }
   const linkStyle: React.CSSProperties = { color: colors.text, textDecoration: 'none' }
@@ -47,7 +47,7 @@ export default function Header() {
           onClick={() => setMenuOpen(true)}
           style={{ display: 'none', background: 'transparent', color: colors.text, border: 'none', fontSize: 18, cursor: 'pointer' }}
         >
-          Menu <span style={{ marginLeft: 8 }}>+</span>
+          Menu <span className="plusIcon" style={{ marginLeft: 8 }}>+</span>
         </button>
 
         {/* Overlay */}
@@ -74,22 +74,23 @@ export default function Header() {
 
         <style jsx>{`
           .menuButton { display: none; align-items: center; }
-          .menuButton span { font-weight: 600; }
+          .menuButton .plusIcon { font-weight: 300; font-size: 28px; line-height: 1; }
 
           @media (max-width: 767px) {
             .navList { display: none !important; }
             .menuButton { display: inline-flex !important; gap: 8px; }
+            nav { padding-left: 20px !important; padding-right: 20px !important; }
           }
 
           .menuOverlay { position: fixed; inset: 0; background: rgba(0,0,0,0.32); z-index: 45; opacity: 0; pointer-events: none; transition: opacity .25s ease; }
           .menuOverlay.open { opacity: 1; pointer-events: auto; }
 
-          .menuPanel { position: fixed; right: 0; top: 0; height: 100vh; width: 80vw; max-width: 420px; transform: translateX(100%); transition: transform .32s ease; z-index: 50; display: flex; flex-direction: column; padding: 32px; box-sizing: border-box; }
+          .menuPanel { position: fixed; right: 0; top: 0; height: 100vh; width: 65vw; max-width: 360px; transform: translateX(100%); transition: transform .32s ease; z-index: 50; display: flex; flex-direction: column; padding: 32px; box-sizing: border-box; }
           .menuPanel.open { transform: translateX(0); }
 
-          .menuLinks { display: flex; flex-direction: column; gap: 18px; margin-top: 24px; }
+          .menuLinks { display: flex; flex-direction: column; gap: 24px; margin-top: 24px; font-size: 20px; }
 
-          .closeButton { align-self: flex-end; background: transparent; border: none; font-size: 20px; cursor: pointer; }
+          .closeButton { align-self: flex-end; background: transparent; border: none; font-size: 28px; cursor: pointer; color: ${colors.text}; padding: 8px 12px; line-height: 1; }
         `}</style>
       </nav>
     </header>

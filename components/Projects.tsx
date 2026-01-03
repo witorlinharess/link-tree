@@ -19,7 +19,7 @@ export default function Projects({ count = 3 }: { count?: number }) {
   // Force single column layout; card layout and sizing handled inline below
   const [columns] = useState<number>(1)
 
-  const sectionStyle: React.CSSProperties = { background: colors.background, color: colors.text, padding: '28px 16px' }
+  const sectionStyle: React.CSSProperties = { background: colors.background, color: colors.text, padding: '28px 0' }
   // match Hero inner padding so content aligns exactly with Hero
   const containerStyle: React.CSSProperties = { maxWidth: 1320, margin: '0 auto', paddingLeft: 48, paddingRight: 48 }
   // one card per row
@@ -82,6 +82,10 @@ export default function Projects({ count = 3 }: { count?: number }) {
           @media (max-width: 767px) {
             .projectContent { flex-direction: column !important; align-items: flex-start !important; }
             .projectButton { margin-left: 0 !important; width: 100%; margin-top: 8px; }
+          }
+          
+          @media (max-width: 767px) {
+            section > div { padding-left: 10px !important; padding-right: 10px !important; }
           }
         `}</style>
       </div>

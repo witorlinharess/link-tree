@@ -7,8 +7,8 @@ export default function Hero(){
   // reduce vertical footprint so Projects sits closer to Hero
   const sectionStyle: React.CSSProperties = { background: colors.background, minHeight: '72vh', display: 'flex', alignItems: 'flex-start', color: colors.text, borderBottom: `1px solid ${colors.line}`, paddingBottom: 40 }
   const innerStyle: React.CSSProperties = { maxWidth: 1320, margin: '0 auto', paddingLeft: 48, paddingRight: 48 }
-  const subtitleStyle: React.CSSProperties = { fontWeight: 300, fontSize: 'clamp(16px, 4vw, 22px)', color: colors.textSecondary }
-  const titleStyle: React.CSSProperties = { fontWeight: 300, fontSize: 'clamp(40px, 14vw, 80px)', lineHeight: 1.04, marginTop: 60,
+  const subtitleStyle: React.CSSProperties = { fontWeight: 300, fontSize: 'clamp(26px, 3.5vw, 22px)', color: colors.textSecondary }
+  const titleStyle: React.CSSProperties = { fontWeight: 300, fontSize: 'clamp(45px, 8vw, 80px)', lineHeight: 1.1, marginTop: 60,
 
     // gradient text using theme colors (45°) and improved rendering
     backgroundImage: `linear-gradient(115deg, ${colors.gradientStart} 0%, ${colors.gradientFinish} 100%)`,
@@ -28,7 +28,7 @@ export default function Hero(){
 
   return (
     <section style={sectionStyle}>
-      <div style={innerStyle}>
+      <div className="heroInner" style={innerStyle}>
 
         <h1 style={titleStyle}>
           Desenvolvedor full stack focado em performance, resultado e experiência do usuário.
@@ -50,6 +50,7 @@ export default function Hero(){
             .heroBottom { flex-direction: column; align-items: flex-start !important; gap: 20px !important; }
             .heroDivider { display: none !important; }
             .heroButtons { width: 100%; flex-direction: column; }
+            .heroInner { padding-left: 20px !important; padding-right: 20px !important; }
           }
         `}</style>
 

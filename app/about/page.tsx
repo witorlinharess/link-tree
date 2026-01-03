@@ -13,7 +13,7 @@ import ButtonCta from '../../components/ButtonCta'
 export default function AboutPage() {
   const wrapperStyle: React.CSSProperties = { display: 'flex', flexDirection: 'column', minHeight: '100vh', background: colors.background }
   // match header width/padding so content aligns with logo and links; make main grow so footer sticks to bottom
-  const containerStyle: React.CSSProperties = { flex: 1, maxWidth: 1280, margin: '0 auto', padding: '160px 32px 80px' }
+  const containerStyle: React.CSSProperties = { flex: 1, maxWidth: 1320, margin: '0 auto', padding: '160px 48px 80px' }
   // left column fixed to image width so the image aligns with the logo; right column fills remaining space
   const gridStyle: React.CSSProperties = { display: 'grid', gridTemplateColumns: '320px 1fr', gap: 48, alignItems: 'start' }
   const imgWrapperStyle: React.CSSProperties = { display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }
@@ -55,6 +55,7 @@ Atuo do backend ao frontend, tomando decisões técnicas e estratégicas pensada
           @media (max-width: 767px) {
             .aboutGrid { grid-template-columns: 1fr !important; gap: 32px !important; }
             .aboutImage { justify-content: center !important; }
+            main { padding-left: 10px !important; padding-right: 10px !important; }
           }
         `}</style>
       </main>

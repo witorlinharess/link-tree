@@ -78,6 +78,7 @@ export default function Footer(){
         <style jsx>{`
           @media (max-width: 767px) {
             .footerTop { flex-direction: column !important; align-items: flex-start !important; gap: 32px !important; }
+            footer > div { padding-left: 20px !important; padding-right: 20px !important; }
           }
         `}</style>
       </div>

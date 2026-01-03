@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link'
 import { colors } from '../lib/colors'
 
@@ -10,11 +12,11 @@ type Props = {
 
 export default function ButtonCta({ href = '#', children = 'Saiba mais', variant = 'primary', external = false }: Props) {
   const base: React.CSSProperties = {
-    padding: '12px 28px',
+    padding: '16px 32px',
     borderRadius: 8,
     textDecoration: 'none',
     fontWeight: 600,
-    fontSize: 14,
+    fontSize: 16,
     display: 'inline-block',
     transition: 'transform 120ms ease, background 120ms ease',
     cursor: 'pointer'
