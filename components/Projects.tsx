@@ -17,33 +17,63 @@ const PROJECTS: Project[] = [
 export default function Projects({ count = 4 }: { count?: number }) {
   const projects = PROJECTS.slice(0, count)
 
-  const sectionStyle: React.CSSProperties = { background: colors.background, color: colors.text, padding: '28px 0' }
-  const containerStyle: React.CSSProperties = { maxWidth: 1320, margin: '0 auto', paddingLeft: 48, paddingRight: 48 }
-  const gridStyle: React.CSSProperties = { display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 32 }
+  const sectionStyle: React.CSSProperties = { 
+    background: colors.background, 
+    color: colors.text, 
+    padding: '120px 0' 
+  }
+  
+  const containerStyle: React.CSSProperties = { 
+    maxWidth: 1200, 
+    margin: '0 auto', 
+    paddingLeft: 48, 
+    paddingRight: 48 
+  }
+  
+  const gridStyle: React.CSSProperties = { 
+    display: 'grid', 
+    gridTemplateColumns: 'repeat(2, 1fr)', 
+    gap: 64,
+    rowGap: 96,
+  }
 
   const cardBaseStyle: React.CSSProperties = {
-    transition: 'transform 0.2s ease',
+    transition: 'opacity 0.2s ease',
     cursor: 'pointer'
   }
 
   const mediaStyle: React.CSSProperties = { 
     position: 'relative', 
     width: '100%', 
-    paddingBottom: '56%', 
+    paddingBottom: '125%', // 4:5 aspect ratio for vertical images
     overflow: 'hidden',
-    borderRadius: 12,
-    background: colors.card
+    background: colors.card,
+    marginBottom: 24,
   }
   
-  const contentStyle: React.CSSProperties = { paddingTop: 16 }
-  const titleStyle: React.CSSProperties = { margin: 0, fontSize: 20, fontWeight: 500, color: colors.text, marginBottom: 6 }
-  const descStyle: React.CSSProperties = { margin: 0, color: colors.textSecondary, fontSize: 15, lineHeight: 1.5 }
+  const titleStyle: React.CSSProperties = { 
+    margin: 0, 
+    fontSize: 24, 
+    fontWeight: 300, 
+    color: colors.text, 
+    marginBottom: 8,
+    letterSpacing: '-0.5px',
+  }
+  
+  const descStyle: React.CSSProperties = { 
+    margin: 0, 
+    color: colors.textSecondary, 
+    fontSize: 14, 
+    lineHeight: 1.6,
+    letterSpacing: '0.2px',
+  }
 
   return (
     <section style={sectionStyle} aria-labelledby="projects-title">
       <div className="projectsContainer" style={containerStyle}>
-        <h3 id="projects-title" style={{ fontSize: 'clamp(32px, 8vw, 38px)', fontWeight: 300, margin: '0 0 6px' }}>Meus Projetos</h3>
-        <p style={{ color: colors.textSecondary, fontSize: 'clamp(18px, 4vw, 22px)', fontWeight: 300, marginBottom: 44 }}>Confira alguns dos meus melhores projetos.</p>
+        <h2 id="projects-title" style={{ fontSize: 14, fontWeight: 400, margin: '0 0 80px', color: colors.textSecondary, letterSpacing: '1px', textTransform: 'uppercase' }}>
+          Projetos Selecionados
+        </h2>
 
         <div className="projectsGrid" style={gridStyle}>
           {projects.map(p => {
@@ -66,15 +96,13 @@ export default function Projects({ count = 4 }: { count?: number }) {
                       alt={p.title} 
                       fill 
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw" 
-                      style={{ objectFit: 'cover', objectPosition: 'center' }}
+                      style={{ objectFit: 'cover', objectPosition: 'top center' }}
                       quality={95}
                     />
                   </div>
 
-                  <div style={contentStyle}>
-                    <h3 id={`proj-${p.id}-title`} style={titleStyle}>{p.title}</h3>
-                    <p style={descStyle}>{p.description}</p>
-                  </div>
+                  <h3 id={`proj-${p.id}-title`} style={titleStyle}>{p.title}</h3>
+                  <p style={descStyle}>{p.description}</p>
                 </article>
               </Link>
             )
@@ -83,15 +111,11 @@ export default function Projects({ count = 4 }: { count?: number }) {
 
         <style jsx>{`
           .projectCard:hover {
-            transform: translateY(-4px);
-          }
-          
-          .projectCard:hover > div:first-child {
-            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            opacity: 0.7;
           }
 
           @media (max-width: 767px) {
-            .projectsGrid { grid-template-columns: 1fr !important; gap: 24px !important; }
+            .projectsGrid { grid-template-columns: 1fr !important; gap: 48px !important; row-gap: 64px !important; }
             .projectsContainer { padding-left: 20px !important; padding-right: 20px !important; }
           }
         `}</style>

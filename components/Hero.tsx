@@ -1,63 +1,119 @@
 'use client';
 
 import { colors } from '../lib/colors'
-import ButtonCta from './ButtonCta'
 
 export default function Hero(){
-  // reduce vertical footprint so Projects sits closer to Hero
   const sectionStyle: React.CSSProperties = { 
-    background: `${colors.background} url(/background.png) center/cover no-repeat`, 
-    minHeight: '72vh', 
+    background: colors.background,
+    minHeight: '100vh', 
     display: 'flex', 
-    alignItems: 'flex-start', 
-    color: colors.text, 
-    borderBottom: `1px solid ${colors.line}`, 
-    paddingBottom: 40
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: colors.text,
+    padding: '120px 0 80px',
+    position: 'relative'
   }
-  const innerStyle: React.CSSProperties = { maxWidth: 1320, margin: '0 auto', paddingLeft: 48, paddingRight: 48 }
-  const subtitleStyle: React.CSSProperties = { fontWeight: 300, fontSize: 'clamp(26px, 3.5vw, 22px)', color: colors.textSecondary }
-  const titleStyle: React.CSSProperties = { fontWeight: 300, fontSize: 'clamp(45px, 8vw, 80px)', lineHeight: 1.1, marginTop: 60,
-
-    // gradient text using theme colors (45°) and improved rendering
-    backgroundImage: `linear-gradient(115deg, ${colors.gradientStart} 0%, ${colors.gradientFinish} 100%)`,
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center',
-    backgroundSize: '150% 150%',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-    // keep unprefixed fallback (some engines may ignore it for text clipping)
-    backgroundClip: 'text',
-    color: 'transparent',
-    display: 'inline-block',
-    textShadow: '0 1px 0 rgba(255,255,255,0.06)',
-    WebkitFontSmoothing: 'antialiased',
-    textRendering: 'optimizeLegibility'
+  
+  const innerStyle: React.CSSProperties = { 
+    maxWidth: 1200, 
+    margin: '0 auto', 
+    paddingLeft: 48, 
+    paddingRight: 48,
+    width: '100%'
+  }
+  
+  const nameStyle: React.CSSProperties = { 
+    fontWeight: 400, 
+    fontSize: 'clamp(14px, 1.5vw, 16px)', 
+    letterSpacing: '0.05em',
+    marginBottom: 40,
+    color: colors.textSecondary,
+    textTransform: 'uppercase'
+  }
+  
+  const titleStyle: React.CSSProperties = { 
+    fontWeight: 300, 
+    fontSize: 'clamp(40px, 6vw, 72px)', 
+    lineHeight: 1.2, 
+    letterSpacing: '-0.02em',
+    margin: 0,
+    color: colors.text
+  }
+  
+  const descStyle: React.CSSProperties = {
+    fontSize: 18,
+    fontWeight: 300,
+    color: colors.textSecondary,
+    lineHeight: 1.6,
+    letterSpacing: '0.2px',
+    maxWidth: 640,
+    margin: 0,
+    marginTop: 16,
   }
 
   return (
     <section style={sectionStyle}>
-      <div className="heroInner" style={innerStyle}>
-
-        <h1 className="fadeInUp" style={titleStyle}>
-          Desenvolvedor full stack focado em performance, resultado e experiência do usuário.
+      <div className="heroInner fadeIn" style={innerStyle}>
+        <div style={nameStyle}>Witor Linhares</div>
+        <h1 style={titleStyle}>
+          Full Stack Developer<br />
+          focado em performance<br />
+          e experiência
         </h1>
-        <div className="heroBottom fadeInUp" style={{ display: 'flex', alignItems: 'center', gap: 24, marginTop: 20, width: '100%' }}>
-          <h2 style={{ ...subtitleStyle, margin: 0 }}>Código é só o meio. O foco é a solução.</h2>
+        <h2 style={descStyle}>
+          Construindo produtos digitais com código limpo e design intencional.
+          Especializado em aplicações web modernas e escaláveis.
+        </h2>
 
-          {/* horizontal divider that fills space between h2 and the button */}
-          <div className="heroDivider" aria-hidden style={{ flex: 1, height: 1, background: colors.gray, opacity: 0.9 }} />
-
-          <div className="heroButtons" style={{ display: 'flex', gap: 12 }}>
-            <ButtonCta href="#" external={true}>Iniciar um projeto</ButtonCta>
-            <ButtonCta href="/projetos" variant="ghost">Portfólio</ButtonCta>
-          </div>
+        <div style={{ display: 'flex', gap: 16, marginTop: 40, alignItems: 'center' }}>
+          <a 
+            href="#projetos" 
+            style={{
+              display: 'inline-block',
+              padding: '12px 32px',
+              background: colors.text,
+              color: colors.background,
+              textDecoration: 'none',
+              fontSize: 14,
+              fontWeight: 400,
+              letterSpacing: '0.3px',
+              transition: 'opacity 0.2s ease',
+            }}
+            className="btnPrimary"
+          >
+            Ver Projetos
+          </a>
+          <a 
+            href="/about" 
+            style={{
+              display: 'inline-block',
+              padding: '12px 32px',
+              background: 'transparent',
+              color: colors.text,
+              textDecoration: 'none',
+              fontSize: 14,
+              fontWeight: 400,
+              letterSpacing: '0.3px',
+              border: `1px solid ${colors.border}`,
+              transition: 'opacity 0.2s ease',
+            }}
+            className="btnSecondary"
+          >
+            Sobre Mim
+          </a>
         </div>
 
         <style jsx>{`
-          @keyframes fadeInUp {
+          .btnPrimary:hover,
+          .btnSecondary:hover {
+            opacity: 0.7;
+          }
+
+
+          @keyframes fadeIn {
             from {
               opacity: 0;
-              transform: translateY(30px);
+              transform: translateY(20px);
             }
             to {
               opacity: 1;
@@ -65,28 +121,14 @@ export default function Hero(){
             }
           }
 
-          .fadeInUp {
-            animation: fadeInUp 0.8s ease-out forwards;
-          }
-
-          h1.fadeInUp {
-            animation-delay: 0.2s;
-            opacity: 0;
-          }
-
-          .heroBottom.fadeInUp {
-            animation-delay: 0.5s;
-            opacity: 0;
+          .fadeIn {
+            animation: fadeIn 0.8s ease-out forwards;
           }
 
           @media (max-width: 767px) {
-            .heroBottom { flex-direction: column; align-items: flex-start !important; gap: 20px !important; }
-            .heroDivider { display: none !important; }
-            .heroButtons { width: 100%; flex-direction: column; }
             .heroInner { padding-left: 20px !important; padding-right: 20px !important; }
           }
         `}</style>
-
       </div>
     </section>
   )
