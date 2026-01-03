@@ -19,7 +19,8 @@ export default function ButtonCta({ href = '#', children = 'Saiba mais', variant
     fontSize: 16,
     display: 'inline-block',
     transition: 'transform 120ms ease, background 120ms ease',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    textAlign: 'center'
   }
 
   const primaryStyle: React.CSSProperties = {
@@ -44,7 +45,7 @@ export default function ButtonCta({ href = '#', children = 'Saiba mais', variant
       </Link>
       <style jsx>{`
         @media (max-width: 767px) {
-          .button-cta { width: 100%; text-align: center; }
+          .button-cta { width: 100%; text-align: center; padding: 12px 24px !important; font-size: 14px !important; }
         }
       `}</style>
     </>

@@ -33,7 +33,7 @@ export default function Footer(){
 
   return (
     <footer style={footerStyle} aria-label="Footer">
-      <div style={innerStyle}>
+      <div className="footerInner" style={innerStyle}>
         <div className="footerTop" style={topRow}>
           <div style={leftCol}>
             <div style={titleStyle}>Conecte-se comigo</div>
@@ -78,7 +78,7 @@ export default function Footer(){
         <style jsx>{`
           @media (max-width: 767px) {
             .footerTop { flex-direction: column !important; align-items: flex-start !important; gap: 32px !important; }
-            footer > div { padding-left: 20px !important; padding-right: 20px !important; }
+            .footerInner { padding-left: 20px !important; padding-right: 20px !important; }
           }
         `}</style>
       </div>

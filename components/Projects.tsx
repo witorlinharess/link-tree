@@ -35,14 +35,14 @@ export default function Projects({ count = 3 }: { count?: number }) {
   // image-focused card: image on top, content row below
   const mediaStyle: React.CSSProperties = { position: 'relative', width: '100%', paddingBottom: '56%', minHeight: 220, overflow: 'hidden' }
   const contentRow: React.CSSProperties = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, padding: '18px 20px' }
-  const titleStyle: React.CSSProperties = { margin: 0, fontSize: 20, color: colors.text }
-  const descStyle: React.CSSProperties = { margin: '6px 0 0', color: 'rgba(245,245,245,0.75)', fontSize: 14 }
+  const titleStyle: React.CSSProperties = { margin: 0, fontSize: 'clamp(26px, 5vw, 20px)', fontWeight: 300, color: colors.text }
+  const descStyle: React.CSSProperties = { margin: '6px 0 0', color: 'rgba(245,245,245,0.75)', fontSize: 'clamp(18px, 4vw, 14px)' }
 
   return (
     <section style={sectionStyle} aria-labelledby="projects-title">
-      <div style={containerStyle}>
+      <div className="projectsContainer" style={containerStyle}>
         <h3 id="projects-title" style={{ fontSize: 'clamp(32px, 8vw, 56px)', fontWeight: 300, margin: '0 0 6px' }}>Meus Projetos</h3>
-        <p style={{ color: colors.textSecondary, fontSize: 'clamp(16px, 4vw, 22px)', fontWeight: 300, marginBottom: 64 }}>Confira alguns dos meus melhores projetos.</p>
+        <p style={{ color: colors.textSecondary, fontSize: 'clamp(18px, 4vw, 22px)', fontWeight: 300, marginBottom: 44 }}>Confira alguns dos meus melhores projetos.</p>
 
         <div style={gridStyle}>
           {projects.map(p => {
@@ -82,10 +82,7 @@ export default function Projects({ count = 3 }: { count?: number }) {
           @media (max-width: 767px) {
             .projectContent { flex-direction: column !important; align-items: flex-start !important; }
             .projectButton { margin-left: 0 !important; width: 100%; margin-top: 8px; }
-          }
-          
-          @media (max-width: 767px) {
-            section > div { padding-left: 10px !important; padding-right: 10px !important; }
+            .projectsContainer { padding-left: 20px !important; padding-right: 20px !important; }
           }
         `}</style>
       </div>
