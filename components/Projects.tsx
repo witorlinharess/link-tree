@@ -41,7 +41,7 @@ export default function Projects({ count = 3 }: { count?: number }) {
   return (
     <section style={sectionStyle} aria-labelledby="projects-title">
       <div className="projectsContainer" style={containerStyle}>
-        <h3 id="projects-title" style={{ fontSize: 'clamp(32px, 8vw, 56px)', fontWeight: 300, margin: '0 0 6px' }}>Meus Projetos</h3>
+        <h3 id="projects-title" style={{ fontSize: 'clamp(32px, 8vw, 38px)', fontWeight: 300, margin: '0 0 6px' }}>Meus Projetos</h3>
         <p style={{ color: colors.textSecondary, fontSize: 'clamp(18px, 4vw, 22px)', fontWeight: 300, marginBottom: 44 }}>Confira alguns dos meus melhores projetos.</p>
 
         <div style={gridStyle}>
