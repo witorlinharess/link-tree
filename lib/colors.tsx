@@ -6,7 +6,7 @@ export const colors = {
   textSecondary: '#e0e0e0ff',
   gray: '#2c2c2c',
   line: '#1b1b1bff',
-  purple: '#5F81F0',
+  orange: '#DB590E',
   card: '#1d1d1dff',
   footer: '#0a0a0aff',
   buttonPortfolio: '##060506ff',

@@ -22,7 +22,7 @@ export default function ButtonCta({ href = '#', children = 'Saiba mais', variant
 
   const primaryStyle: React.CSSProperties = {
     ...base,
-    background: colors.purple,
+    background: colors.orange,
     color: colors.white,
   }
 
@@ -36,8 +36,15 @@ export default function ButtonCta({ href = '#', children = 'Saiba mais', variant
   const style = variant === 'ghost' ? ghostStyle : primaryStyle
 
   return (
-    <Link href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined} className="button-cta" style={style} aria-label={typeof children === 'string' ? children : 'Call to action'}>
-      {children}
-    </Link>
+    <>
+      <Link href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined} className="button-cta" style={style} aria-label={typeof children === 'string' ? children : 'Call to action'}>
+        {children}
+      </Link>
+      <style jsx>{`
+        @media (max-width: 767px) {
+          .button-cta { width: 100%; text-align: center; }
+        }
+      `}</style>
+    </>
   )
 }

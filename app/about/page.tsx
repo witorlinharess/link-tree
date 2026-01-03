@@ -17,16 +17,16 @@ export default function AboutPage() {
   // left column fixed to image width so the image aligns with the logo; right column fills remaining space
   const gridStyle: React.CSSProperties = { display: 'grid', gridTemplateColumns: '320px 1fr', gap: 48, alignItems: 'start' }
   const imgWrapperStyle: React.CSSProperties = { display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }
-  const titleStyle: React.CSSProperties = { color: colors.text, fontSize: 38, fontWeight: 300, margin: '0 0 8px' }
-  const sectionStyle: React.CSSProperties = { color: colors.text, fontSize: 20, fontWeight: 300, lineHeight: 1.6 }
+  const titleStyle: React.CSSProperties = { color: colors.text, fontSize: 'clamp(28px, 6vw, 38px)', fontWeight: 300, margin: '0 0 8px' }
+  const sectionStyle: React.CSSProperties = { color: colors.text, fontSize: 'clamp(16px, 3.5vw, 20px)', fontWeight: 300, lineHeight: 1.6 }
 
   return (
     <div style={wrapperStyle}>
       <Header />
 
       <main style={containerStyle}>
-        <div style={gridStyle}>
-          <div style={imgWrapperStyle}>
+        <div className="aboutGrid" style={gridStyle}>
+          <div className="aboutImage" style={imgWrapperStyle}>
             <Image src="/witor-linhares.webp" alt="Witor Linhares" width={320} height={320} style={{ borderRadius: 12, objectFit: 'cover' }} />
           </div>
 
@@ -50,6 +50,13 @@ Atuo do backend ao frontend, tomando decisões técnicas e estratégicas pensada
             </div>
           </div>
         </div>
+
+        <style jsx>{`
+          @media (max-width: 767px) {
+            .aboutGrid { grid-template-columns: 1fr !important; gap: 32px !important; }
+            .aboutImage { justify-content: center !important; }
+          }
+        `}</style>
       </main>
 
       <Footer />

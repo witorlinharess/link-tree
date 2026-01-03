@@ -1,3 +1,5 @@
+'use client';
+
 import { FaLinkedin, FaInstagram, FaGithub, FaDiscord, FaEnvelope } from 'react-icons/fa'
 import { SiCloudflare } from 'react-icons/si'
 import { colors } from '../lib/colors'
@@ -20,7 +22,7 @@ export default function Footer(){
     width: 36,
     height: 36,
     borderRadius: 7,
-    background: bg ?? colors.purple,
+    background: bg ?? colors.orange,
     color: colors.white,
     textDecoration: 'none',
     transition: 'transform 120ms ease, box-shadow 160ms ease'
@@ -32,27 +34,27 @@ export default function Footer(){
   return (
     <footer style={footerStyle} aria-label="Footer">
       <div style={innerStyle}>
-        <div style={topRow}>
+        <div className="footerTop" style={topRow}>
           <div style={leftCol}>
             <div style={titleStyle}>Conecte-se comigo</div>
             <div style={iconsRow}>
-              <a href="https://www.linkedin.com/witorlinhares" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" style={iconBox(colors.purple)}>
+              <a href="https://www.linkedin.com/witorlinhares" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" style={iconBox(colors.orange)}>
                 <FaLinkedin size={18} />
               </a>
 
-              <a href="https://www.instagram.com/witorlinhares" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style={iconBox(colors.purple)}>
+              <a href="https://www.instagram.com/witorlinhares" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style={iconBox(colors.orange)}>
                 <FaInstagram size={18} />
               </a>
 
-              <a href="https://github.com/witorlinharess" target="_blank" rel="noopener noreferrer" aria-label="GitHub" style={iconBox(colors.purple)}>
+              <a href="https://github.com/witorlinharess" target="_blank" rel="noopener noreferrer" aria-label="GitHub" style={iconBox(colors.orange)}>
                 <FaGithub size={18} />
               </a>
 
-              <a href="https://discord.gg/eJFHGnJ6Pn" target="_blank" rel="noopener noreferrer" aria-label="Discord" style={iconBox(colors.purple)}>
+              <a href="https://discord.gg/eJFHGnJ6Pn" target="_blank" rel="noopener noreferrer" aria-label="Discord" style={iconBox(colors.orange)}>
                 <FaDiscord size={18} />
               </a>
 
-              <a href="mailto:witorlinhares@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Email" style={iconBox(colors.purple)}>
+              <a href="mailto:witorlinhares@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Email" style={iconBox(colors.orange)}>
                 <FaEnvelope size={18} />
               </a>
 
@@ -73,6 +75,11 @@ export default function Footer(){
           </div>
         </div>
 
+        <style jsx>{`
+          @media (max-width: 767px) {
+            .footerTop { flex-direction: column !important; align-items: flex-start !important; gap: 32px !important; }
+          }
+        `}</style>
       </div>
     </footer>
   )

@@ -20,3 +20,10 @@ body{
 /* Removed .projects-note from globals — project-specific presentation should come from the React component */
 
 .button-cta:hover { transform: translateY(-4px); animation-play-state: paused }
+
+/* Responsive utilities */
+@media (max-width: 767px) {
+  /* Reduce padding on mobile for all main containers */
+  [style*="paddingLeft: 48px"] { padding-left: 20px !important; padding-right: 20px !important; }
+  [style*="padding: 160px 32px 80px"] { padding: 140px 20px 60px !important; }
+}
