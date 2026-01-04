@@ -71,7 +71,7 @@ export default function Hero(){
             Orçamento
           </a>
           <a 
-            href="/projetos" 
+            href="/portfolio" 
             style={{
               display: 'inline-block',
               padding: '12px 32px',

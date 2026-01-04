@@ -20,7 +20,7 @@ export default function Projects({ count = 4 }: { count?: number }) {
   const sectionStyle: React.CSSProperties = { 
     background: colors.background, 
     color: colors.text, 
-    padding: '120px 0' 
+    padding: '40px 0' 
   }
   
   const containerStyle: React.CSSProperties = { 
@@ -45,7 +45,7 @@ export default function Projects({ count = 4 }: { count?: number }) {
   const mediaStyle: React.CSSProperties = { 
     position: 'relative', 
     width: '100%', 
-    paddingBottom: '125%', // 4:5 aspect ratio for vertical images
+    paddingBottom: '56.25%', // 16:9 aspect ratio (1920x1080)
     overflow: 'hidden',
     background: colors.card,
     marginBottom: 24,
@@ -72,7 +72,7 @@ export default function Projects({ count = 4 }: { count?: number }) {
     <section style={sectionStyle} aria-labelledby="projects-title">
       <div className="projectsContainer" style={containerStyle}>
         <h2 id="projects-title" style={{ fontSize: 14, fontWeight: 400, margin: '0 0 80px', color: colors.textSecondary, letterSpacing: '1px', textTransform: 'uppercase' }}>
-          Projetos Selecionados
+          Alguns dos meu melhores projetos
         </h2>
 
         <div className="projectsGrid" style={gridStyle}>

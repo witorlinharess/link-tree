@@ -45,23 +45,12 @@ export default function AboutPage() {
   
   const textStyle: React.CSSProperties = { 
     color: colors.textSecondary, 
-    fontSize: 16, 
+    fontSize: 18, 
     fontWeight: 300, 
     lineHeight: 1.7,
     letterSpacing: '0.2px',
   }
   
-  const emailLinkStyle: React.CSSProperties = {
-    display: 'inline-block',
-    marginTop: 40,
-    color: colors.text,
-    textDecoration: 'none',
-    fontSize: 16,
-    letterSpacing: '0.3px',
-    borderBottom: `1px solid ${colors.text}`,
-    paddingBottom: 2,
-    transition: 'opacity 0.2s ease',
-  }
 
   return (
     <div style={wrapperStyle}>
@@ -81,39 +70,48 @@ export default function AboutPage() {
 
           <div>
             <h1 style={titleStyle}>
-              Desenvolvedor full stack focado em soluções que funcionam
+              Desenvolvedor Full Stack<br />orientado a resultados
             </h1>
            
             <div style={textStyle}>
               <p style={{ margin: '0 0 24px' }}>
-                Construo produtos digitais completos — aplicações web e mobile, SaaS, 
-                sistemas e dashboards — sempre com foco em performance, usabilidade e resultado.
+                Sou desenvolvedor full stack focado em criar soluções digitais orientadas a resultado.
+                Atuo no desenvolvimento de aplicações web e mobile, SaaS e sistemas sob medida, sempre partindo do problema antes da tecnologia.
               </p>
 
               <p style={{ margin: '0 0 24px' }}>
-                Antes de escrever código, analiso o problema, o contexto e o impacto da solução. 
-                A tecnologia entra como meio, não como fim.
+                Cada decisão técnica é tomada para reduzir risco, garantir performance e sustentar o crescimento do produto no longo prazo.
               </p>
 
               <p style={{ margin: 0 }}>
-                Atuo do backend ao frontend, tomando decisões técnicas e estratégicas 
-                pensadas para escala, manutenção e experiência do usuário.
+                Vamos conversar e avaliar a melhor solução para o seu cenário.
               </p>
 
               <a 
                 href="mailto:witorlinhares@gmail.com" 
-                style={emailLinkStyle}
-                className="emailLink"
+                style={{
+                  display: 'inline-block',
+                  marginTop: 40,
+                  padding: '12px 32px',
+                  background: colors.text,
+                  color: colors.background,
+                  textDecoration: 'none',
+                  fontSize: 14,
+                  fontWeight: 400,
+                  letterSpacing: '0.3px',
+                  transition: 'opacity 0.2s ease',
+                }}
+                className="btnContact"
               >
-                witorlinhares@gmail.com
+                Iniciar conversa
               </a>
             </div>
           </div>
         </div>
 
         <style jsx>{`
-          .emailLink:hover {
-            opacity: 0.6;
+          .btnContact:hover {
+            opacity: 0.7;
           }
 
           @media (max-width: 767px) {

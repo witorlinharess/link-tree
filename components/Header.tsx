@@ -59,8 +59,19 @@ export default function Header() {
   }
 
   const [menuOpen, setMenuOpen] = useState(false)
+  const [visitors, setVisitors] = useState(106)
 
   const toggleMenu = () => setMenuOpen(!menuOpen)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Oscila entre 103 e 110
+      const newValue = Math.floor(Math.random() * 8) + 103
+      setVisitors(newValue)
+    }, 3000)
+    
+    return () => clearInterval(interval)
+  }, [])
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -87,9 +98,31 @@ export default function Header() {
     <>
       <header style={headerStyle}>
         <nav style={navStyle}>
-          <Link href="/" style={logoStyle}>
-            WITOR LINHARES
-          </Link>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+            <Link href="/" style={logoStyle}>
+              WITOR LINHARES
+            </Link>
+            
+            <div style={{ 
+              width: 1, 
+              height: 20, 
+              background: colors.border,
+            }} />
+            
+            <div style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: 8,
+              fontSize: 14,
+              color: colors.textSecondary,
+            }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <span style={{ fontWeight: 500, color: colors.text }}>{visitors}</span>
+            </div>
+          </div>
 
           <button
             onClick={toggleMenu}
@@ -150,8 +183,29 @@ export default function Header() {
           boxSizing: 'border-box',
         }}
       >
+        <button
+          onClick={() => setMenuOpen(false)}
+          aria-label="Fechar menu"
+          style={{
+            position: 'absolute',
+            top: 32,
+            right: 32,
+            background: 'transparent',
+            border: 'none',
+            padding: 8,
+            cursor: 'pointer',
+            color: colors.text,
+            fontSize: 24,
+            lineHeight: 1,
+            transition: 'opacity 0.2s ease',
+          }}
+          className="closeButton"
+        >
+          ×
+        </button>
+
         <div className="menuContainer" style={{ position: 'relative' }}>
-          <nav style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          <nav style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
             <h2 style={{
               fontSize: 14,
               fontWeight: 400,
@@ -167,11 +221,10 @@ export default function Header() {
               href="/portfolio" 
               onClick={() => setMenuOpen(false)}
               style={{
-                display: 'block',
-                padding: '16px 0',
+                width: 'fit-content',
                 color: colors.text,
                 textDecoration: 'none',
-                fontSize: 32,
+                fontSize: 24,
                 fontWeight: 300,
                 letterSpacing: '-0.5px',
                 transition: 'opacity 0.2s ease',
@@ -184,11 +237,10 @@ export default function Header() {
               href="/about" 
               onClick={() => setMenuOpen(false)}
               style={{
-                display: 'block',
-                padding: '16px 0',
+                width: 'fit-content',
                 color: colors.text,
                 textDecoration: 'none',
-                fontSize: 32,
+                fontSize: 24,
                 fontWeight: 300,
                 letterSpacing: '-0.5px',
                 transition: 'opacity 0.2s ease',
@@ -203,11 +255,10 @@ export default function Header() {
               rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)}
               style={{
-                display: 'block',
-                padding: '16px 0',
+                width: 'fit-content',
                 color: colors.text,
                 textDecoration: 'none',
-                fontSize: 32,
+                fontSize: 24,
                 fontWeight: 300,
                 letterSpacing: '-0.5px',
                 transition: 'opacity 0.2s ease',
@@ -288,12 +339,16 @@ export default function Header() {
             background: ${colors.textSecondary};
           }
 
-          .sidebarLink:hover {
+          :global(.sidebarLink:hover) {
             opacity: 0.6;
           }
 
           .contactLink:hover {
             opacity: 0.7;
+          }
+
+          .closeButton:hover {
+            opacity: 0.6;
           }
 
           @media (max-width: 767px) {
